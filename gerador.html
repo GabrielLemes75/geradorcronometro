@@ -12,69 +12,88 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #f4f4f4;
-      flex-direction: column;
+      background: #333;
     }
 
-    .container,
-    .timer-container {
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .container {
+      width: 90%;
+      max-width: 800px;
       background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
 
-    .hidden {
-      display: none;
+    .section {
+      padding: 15px;
+      margin-bottom: 10px;
     }
 
-    .timer {
-      font-size: 3em;
-      font-weight: bold;
+    .row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex: 1;
+      padding: 10px;
+
     }
 
     .button-container {
-      margin-top: 10px;
-    }
-
-    .link-container {
+      text-align: center;
       margin-top: 15px;
     }
 
-    .link-container input {
-      width: 100%;
-      padding: 5px;
-      text-align: center;
+    button {
+      padding: 10px;
+      background: blue;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
     }
   </style>
 </head>
 
 <body>
-  <div id="generator" class="container">
-    <h2>Gerador de Cronômetro</h2>
-    <label>Data alvo:</label>
-    <input type="date" id="targetDate">
-    <label>Hora:</label>
-    <select id="targetHour"></select>
-    <label>Minuto:</label>
-    <select id="targetMinute"></select>
-    <label>Cor do fundo:</label>
-    <input type="color" id="bgColor" value="#ffffff">
-    <label>Cor do texto:</label>
-    <input type="color" id="textColor" value="#000000">
+  <div class="container">
+    <h2 style="text-align: center;">Gerador de Cronômetro</h2>
+
+    <div class="section">
+      <div class="row">
+        <div class="column">
+          <label>Data alvo:</label>
+          <input type="date" id="targetDate">
+        </div>
+        <div class="column">
+          <label>Hora:</label>
+          <select id="targetHour"></select>
+        </div>
+        <div class="column">
+          <label>Minuto:</label>
+          <select id="targetMinute"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="row">
+        <div class="column">
+          <label>Cor do fundo:</label>
+          <input type="color" id="bgColor" value="#ffffff">
+        </div>
+        <div class="column">
+          <label>Cor do texto:</label>
+          <input type="color" id="textColor" value="#000000">
+        </div>
+      </div>
+    </div>
+
     <div class="button-container">
       <button onclick="generateLink()">Gerar Link</button>
     </div>
-    <div id="linkContainer" class="link-container hidden">
-      <label>Link gerado:</label>
-      <input type="text" id="generatedLink" readonly>
-    </div>
-  </div>
-
-  <div id="timerContainer" class="timer-container hidden">
-    <h2>Tempo Restante</h2>
-    <div id="timer" class="timer">00:00:00</div>
   </div>
 
   <script>
@@ -101,52 +120,12 @@
       }
 
       const link = `${window.location.origin}${window.location.pathname}?date=${date}T${hour}:${minute}&bg=${bgColor}&text=${textColor}`;
-      document.getElementById("generatedLink").value = link;
-      document.getElementById("linkContainer").classList.remove("hidden");
-    }
-
-    function startCountdown(targetDate) {
-      function updateTimer() {
-        const now = new Date().getTime();
-        const timeRemaining = targetDate - now;
-
-        if (timeRemaining <= 0) {
-          document.getElementById("timer").textContent = "00:00:00";
-          clearInterval(interval);
-          return;
-        }
-
-        const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((timeRemaining / (1000 * 60)) % 60);
-        const seconds = Math.floor((timeRemaining / 1000) % 60);
-
-        document.getElementById("timer").textContent =
-          `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      }
-
-      const interval = setInterval(updateTimer, 1000);
-      updateTimer();
-    }
-
-    function checkURLParams() {
-      const params = new URLSearchParams(window.location.search);
-      const dateParam = params.get("date");
-      const bgColor = params.get("bg") ? "#" + params.get("bg") : "#ffffff";
-      const textColor = params.get("text") ? "#" + params.get("text") : "#000000";
-
-      if (dateParam) {
-        document.getElementById("generator").classList.add("hidden");
-        document.getElementById("timerContainer").classList.remove("hidden");
-        document.body.style.background = bgColor;
-        document.getElementById("timer").style.color = textColor;
-        startCountdown(new Date(dateParam).getTime());
-      }
+      alert("Link Gerado: " + link);
     }
 
     document.addEventListener("DOMContentLoaded", function () {
       populateDropdown("targetHour", 24);
       populateDropdown("targetMinute", 59);
-      checkURLParams();
     });
   </script>
 </body>
