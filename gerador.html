@@ -101,9 +101,13 @@
       }
 
       const link = `${window.location.origin}${window.location.pathname}?date=${date}T${hour}:${minute}&bg=${bgColor}&text=${textColor}`;
+
       document.getElementById("generatedLink").value = link;
       document.getElementById("linkContainer").classList.remove("hidden");
+
+      window.open(link, '_blank');
     }
+
 
     function startCountdown(targetDate) {
       function updateTimer() {
