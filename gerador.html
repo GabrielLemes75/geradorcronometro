@@ -120,7 +120,7 @@
       }
 
       const link = `${window.location.origin}${window.location.pathname}?date=${date}T${hour}:${minute}&bg=${bgColor}&text=${textColor}`;
-      alert("Link Gerado: " + link);
+      window.open(link, '_blank');
     }
 
     document.addEventListener("DOMContentLoaded", function () {
