@@ -11,8 +11,12 @@
       "dest": "server.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "src": "/gerador.html",
+      "dest": "gerador.html"
+    },
+    {
+      "src": "/",
+      "dest": "/gerador.html"
     }
   ]
 }
