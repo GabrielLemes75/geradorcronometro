@@ -13,7 +13,7 @@
     },
     {
       "src": "/gerador",
-      "dest": "/gerador.html"
+      "dest": "gerador.html"
     }
   ]
 }
