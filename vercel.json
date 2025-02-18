@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/generate-gif.js",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/generate-gif",
-      "dest": "/api/generate-gif.js"
+      "dest": "server.js"
     },
     {
       "src": "/gerador",
