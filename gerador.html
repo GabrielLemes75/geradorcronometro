@@ -88,25 +88,33 @@
       }
     }
 
-    function generateLink() {
-      const date = document.getElementById('targetDate').value;
-      const hour = document.getElementById('targetHour').value;
-      const minute = document.getElementById('targetMinute').value;
-      const bgColor = document.getElementById('bgColor').value.substring(1);
-      const textColor = document.getElementById('textColor').value.substring(1);
+function generateLink() {
+    const date = document.getElementById('targetDate').value;
+    const hour = document.getElementById('targetHour').value;
+    const minute = document.getElementById('targetMinute').value;
+    const bgColor = document.getElementById('bgColor').value.substring(1);
+    const textColor = document.getElementById('textColor').value.substring(1);
 
-      if (!date) {
+    if (!date) {
         alert('Escolha uma data, hora e minuto!');
         return;
-      }
-
-      const link = `${window.location.origin}${window.location.pathname}?date=${date}T${hour}:${minute}&bg=${bgColor}&text=${textColor}`;
-
-      document.getElementById("generatedLink").value = link;
-      document.getElementById("linkContainer").classList.remove("hidden");
-
-      window.open(link, '_blank');
     }
+
+    const formattedDate = `${date}T${hour}:${minute}`;
+
+    // Agora o link aponta para o backend hospedado no mesmo domínio
+    const gifLink = `${window.location.origin}/generate-gif?time=${formattedDate}&bg=${bgColor}&text=${textColor}`;
+
+    // Atualiza a tag <img> com o novo GIF gerado
+    document.getElementById("cronometroImg").src = gifLink;
+
+    // Exibir o link gerado para copiar
+    document.getElementById("generatedLink").value = gifLink;
+    document.getElementById("linkContainer").classList.remove("hidden");
+
+    // Abrir o link do GIF em uma nova aba
+    window.open(gifLink, '_blank');
+}
 
 
     function startCountdown(targetDate) {
