@@ -11,11 +11,7 @@
       "dest": "server.js"
     },
     {
-      "src": "/gerador.html",
-      "dest": "gerador.html"
-    },
-    {
-      "src": "/",
+      "src": "/gerador",
       "dest": "/gerador.html"
     }
   ]
