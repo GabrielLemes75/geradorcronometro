@@ -7,8 +7,8 @@
   },
   "routes": [
     {
-      "src": "/generate-gif",
-      "dest": "/api/generate-gif.js"
+      "src": "/server",
+      "dest": "/server.js"
     }
   ]
 }
