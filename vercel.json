@@ -1,8 +1,14 @@
 {
   "version": 2,
   "functions": {
-    "api/server.js": {
+    "api/generate-gif.js": {
       "runtime": "nodejs18.x"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/generate-gif",
+      "dest": "/api/generate-gif.js"
+    }
+  ]
 }
