@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "functions": {
-    "server.js": {
-      "runtime": "nodejs18.x"
+  "builds": [
+    {
+      "src": "api/generate-gif.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/generate-gif",
-      "dest": "server.js"
+      "dest": "/api/generate-gif.js"
     },
     {
       "src": "/gerador",
