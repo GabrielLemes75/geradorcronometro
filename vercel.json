@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "public": "public",
   "functions": {
     "server.js": {
       "runtime": "nodejs18.x"
@@ -9,6 +10,10 @@
     {
       "src": "/generate-gif",
       "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ]
 }
