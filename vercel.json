@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/generate-gif",
+      "src": "/geradorcronometro",
       "dest": "server.js"
     }
   ]
