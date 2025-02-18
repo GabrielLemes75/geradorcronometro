@@ -37,8 +37,8 @@ app.get("/generate-gif", async (req, res) => {
     encoder.setQuality(10);
 
     // Definir cores
-    const bgColor = bg ? `#${bg}` : "#ffffff";
-    const textColor = text ? `#${text}` : "#000000";
+    const bgColor = bg ? #${bg} : "#ffffff";
+    const textColor = text ? #${text} : "#000000";
 
     // Gerar os quadros do GIF (10s de duração)
     for (let i = 0; i < 10 && remainingTime >= 0; i++) {
@@ -59,4 +59,4 @@ app.get("/generate-gif", async (req, res) => {
     encoder.finish();
 });
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(Servidor rodando na porta ${PORT}));
